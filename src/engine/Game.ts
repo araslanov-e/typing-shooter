@@ -1,6 +1,6 @@
 import { Letter, LetterState } from "../entities/Letter"
 import { Particle } from "../entities/Particle"
-import { Spawner } from "../systems/Spawner"
+import { Spawner, type SymbolSet } from "../systems/Spawner"
 import { Input } from "../systems/Input"
 import { HUD } from "../ui/HUD"
 
@@ -44,6 +44,10 @@ export class Game {
 
   start() {
     requestAnimationFrame((t) => this.loop(t))
+  }
+
+  setSymbolSet(symbolSet: SymbolSet) {
+    this.spawner.setSymbolSet(symbolSet)
   }
 
   startNewGame() {

@@ -1,5 +1,6 @@
 
 import { Game } from "./engine/Game"
+import type { SymbolSet } from "./systems/Spawner"
 
 const container = document.createElement("div")
 container.className = "game-container"
@@ -15,7 +16,11 @@ startOverlay.className = "overlay"
 startOverlay.innerHTML = `
   <h1>Typing Shooter</h1>
   <p>Печатай буквы на падающих шарах</p>
-  <button>Начать игру</button>
+  <div class="symbol-picker">
+    <button data-symbol-set="en" class="active">English</button>
+    <button data-symbol-set="ru">Русский</button>
+  </div>
+  <button data-role="start">Начать игру</button>
 `
 container.appendChild(startOverlay)
 
@@ -30,9 +35,11 @@ container.appendChild(gameOverOverlay)
 
 const game = new Game(canvas)
 
-const startButton = startOverlay.querySelector("button")
+const startButton = startOverlay.querySelector('[data-role="start"]')
+const symbolSetButtons = startOverlay.querySelectorAll("[data-symbol-set]")
 const retryButton = gameOverOverlay.querySelector("button")
 const finalScore = gameOverOverlay.querySelector("#final-score")
+let selectedSymbolSet: SymbolSet = "en"
 
 if (!(startButton instanceof HTMLButtonElement)) {
   throw new Error("Start button not found")
@@ -46,7 +53,31 @@ if (!(finalScore instanceof HTMLSpanElement)) {
   throw new Error("Final score label not found")
 }
 
+if (symbolSetButtons.length === 0) {
+  throw new Error("Symbol set buttons not found")
+}
+
+symbolSetButtons.forEach((button) => {
+  if (!(button instanceof HTMLButtonElement)) {
+    return
+  }
+
+  button.addEventListener("click", () => {
+    const symbolSet = button.dataset.symbolSet
+    if (symbolSet !== "en" && symbolSet !== "ru") {
+      return
+    }
+
+    selectedSymbolSet = symbolSet
+
+    symbolSetButtons.forEach((other) => {
+      other.classList.toggle("active", other === button)
+    })
+  })
+})
+
 const startGame = () => {
+  game.setSymbolSet(selectedSymbolSet)
   startOverlay.classList.add("hidden")
   gameOverOverlay.classList.add("hidden")
   game.startNewGame()

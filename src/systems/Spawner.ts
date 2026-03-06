@@ -1,9 +1,13 @@
 import { Letter } from "../entities/Letter"
 
+export type SymbolSet = "en" | "ru"
+
 export class Spawner {
   // Classic touch-typing progression:
   // home row -> top row -> bottom row -> numbers
-  letters = "fjdkslaghruieowpqtnvmcbxyz1234567890"
+  static readonly ENGLISH_SYMBOLS = "fjdkslaghruieowpqtnvmcbxyz1234567890"
+  static readonly RUSSIAN_SYMBOLS = "аолдвфыпржэйцукенгшщзхъёячсмитьбю1234567890"
+  letters = Spawner.ENGLISH_SYMBOLS
 
   static readonly LETTER_RADIUS = 26
   static readonly SPAWN_Y = 0
@@ -13,6 +17,11 @@ export class Spawner {
   static readonly OVERLAP_CHECK_Y = 130
 
   constructor(private width: number) {}
+
+  setSymbolSet(symbolSet: SymbolSet) {
+    this.letters =
+      symbolSet === "ru" ? Spawner.RUSSIAN_SYMBOLS : Spawner.ENGLISH_SYMBOLS
+  }
 
   getMaxLevel() {
     return Math.ceil(this.letters.length / 2)
