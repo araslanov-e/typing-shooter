@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#060b1a"/>
+      <stop offset="45%" stop-color="#0d1833"/>
+      <stop offset="100%" stop-color="#10264a"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="20%" cy="18%" r="35%">
+      <stop offset="0%" stop-color="#58c7ff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#58c7ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="82%" cy="28%" r="35%">
+      <stop offset="0%" stop-color="#2a79ff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#2a79ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#glowA)"/>
+  <rect width="1280" height="720" fill="url(#glowB)"/>
+
+  <rect x="190" y="70" width="900" height="580" rx="10" fill="#080e20" fill-opacity="0.78" stroke="#7ac6ff" stroke-opacity="0.2"/>
+
+  <rect x="190" y="70" width="900" height="580" rx="10" fill="#020a1a" fill-opacity="0.72"/>
+
+  <text x="640" y="285" text-anchor="middle" fill="#ffffff" font-size="64" font-family="Arial, sans-serif" font-weight="700">Typing Shooter</text>
+  <text x="640" y="334" text-anchor="middle" fill="#d8ebff" font-size="28" font-family="Arial, sans-serif">Печатай буквы на падающих шарах</text>
+
+  <rect x="520" y="374" width="110" height="44" rx="8" fill="#5fd1ff"/>
+  <text x="575" y="402" text-anchor="middle" fill="#0f2430" font-size="22" font-family="Arial, sans-serif">English</text>
+
+  <rect x="650" y="374" width="110" height="44" rx="8" fill="#23445d" stroke="#5fd1ff" stroke-opacity="0.5"/>
+  <text x="705" y="402" text-anchor="middle" fill="#d9f4ff" font-size="22" font-family="Arial, sans-serif">Русский</text>
+
+  <rect x="545" y="446" width="190" height="56" rx="12" fill="#5fd1ff"/>
+  <text x="640" y="482" text-anchor="middle" fill="#0f2430" font-size="30" font-family="Arial, sans-serif" font-weight="700">Начать игру</text>
+
+  <text x="640" y="620" text-anchor="middle" fill="#9fc4e4" font-size="20" font-family="Arial, sans-serif">Скриншот стартового экрана (макет)</text>
+</svg>
