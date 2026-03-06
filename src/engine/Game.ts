@@ -14,6 +14,8 @@ export class Game {
   last = 0
   spawnTimer = 0
   spawnInterval = 900
+  static readonly MAX_ACTIVE_LETTERS = 12
+  static readonly MIN_SPAWN_INTERVAL = 600
 
   screenShake = 0
 
@@ -86,7 +88,12 @@ export class Game {
     this.spawnTimer += delta
 
     if (this.spawnTimer > this.spawnInterval) {
-      this.letters.push(this.spawner.spawn(this.level))
+      if (this.letters.length < Game.MAX_ACTIVE_LETTERS) {
+        const letter = this.spawner.spawn(this.level, this.letters)
+        if (letter) {
+          this.letters.push(letter)
+        }
+      }
       this.spawnTimer = 0
     }
 
@@ -112,6 +119,7 @@ export class Game {
       const levelsGained = nextLevel - this.level
       this.level = nextLevel
       this.spawnInterval *= 0.9 ** levelsGained
+      this.spawnInterval = Math.max(Game.MIN_SPAWN_INTERVAL, this.spawnInterval)
     }
 
     if (this.screenShake > 0) {
